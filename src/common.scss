@@ -1,0 +1,10 @@
+/**
+ * #.# Common SCSS
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+[aria-label="Timeline Blocks"]{
+    .block-editor-block-types-list__list-item:nth-child(3){
+        display: none !important;
+    }
+}

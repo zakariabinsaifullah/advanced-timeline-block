@@ -1,0 +1,33 @@
+[data-type="atlb/timeline-block"]{
+    .block-editor-block-list__layout {
+        [data-type="atlb/single-timeline-item"]{
+            width: 50%;
+            margin: 0 !important;
+            &:nth-child(even) {
+                left: 50%;
+                // content after 
+                .container-after {
+                    left: -8px;
+                    &.icon-marker {
+                        left: -15px;
+                    }
+                }
+                .container-before {
+                    left: -8px;
+                }
+                .oppsite-content {
+                    right: auto !important;
+                    left: -120px !important;
+                }
+            }
+            .wp-block-atlb-single-timeline-item {
+                width: 100% !important;
+                .oppsite-content {
+                    p {
+                        margin: 0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
