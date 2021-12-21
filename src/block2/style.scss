@@ -1,19 +1,26 @@
-.atlb-timeline-content {
-    &.bxs_one {
+.wp-block-atlb-single-timeline-item {
+    .bxs_one {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
-    &.bxs_two {
+    .bxs_two {
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
-    &.bxs_three {
+    .bxs_three {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
-    &.bxs_four {
+    .bxs_four {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
-    &.bxs_five {
+    .bxs_five {
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     }
     position: relative;
     z-index: 1;
+
+    .atlb-timeline-content, .oppsite-content {
+        p, h1,h2, h3, h4, h5, h6 {
+            padding: 0;
+            margin: 0;
+        }
+    }
 }

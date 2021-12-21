@@ -8,7 +8,7 @@ import edit from './edit';
 import './editor.scss';
 import save from './save';
 import './style.scss';
-import icon from './icon';
+import icon from '../icon';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
@@ -17,7 +17,7 @@ const { registerBlockType } = wp.blocks;
  * Register: Timeline Block.
  */
 registerBlockType( 'atlb/timeline-block', {
-	title: __( 'Content Timeline' ),
+	title: __( 'Timeline' ),
 	icon: {
 		src: icon
 	},

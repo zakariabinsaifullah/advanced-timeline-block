@@ -5,15 +5,13 @@ import { RangeControl, ColorPalette, SelectControl, PanelBody, ToggleControl } f
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 import fontAwesomeIcons from './fontawesomeicons';
 
-const ALLOWED_BLOCKS = [ 'core/image', 'core/paragraph' ];
-
 const colors = [
     { name: 'red', color: '#E05D5D' },
     { name: 'white', color: '#ffffff' },
     { name: 'blue', color: '#290FBA' },
     { name: 'black', color: '#333333' },
     { name: 'gray', color: '#cccccc' },
-    { name: 'orange', color: '#F6D155' },
+    { name: 'orange', color: '#F6D155' }
 ];
 
 const shadowStyles = [
@@ -24,15 +22,30 @@ const shadowStyles = [
     { label: __('Style Five'), value: 'bxs_five' }
 ];
 
+const tags = [
+    { label: __('h1'), value: 'h1' },
+    { label: __('h2'), value: 'h2' },
+    { label: __('h3'), value: 'h3' },
+    { label: __('h4'), value: 'h4' },
+    { label: __('h5'), value: 'h5' },
+    { label: __('h6'), value: 'h6' },
+    { label: __('p'), value: 'p' },
+    { label: __('span'), value: 'span' },
+    { label: __('div'), value: 'div' }
+];
+
 const markerTypes = [
     { label: __('Circle'), value: 'circle' },
-    { label: __('Custom Icon'), value: 'custom_icon' },
+    { label: __('Custom Icon'), value: 'custom_icon' }
 ];
 
 const Edit = ({ className, attributes, setAttributes }) => {
-    const { contentBg, enableBorder, borderWidth, borderColor, enableBorderRadius, borderRadius, enableBoxShadow, boxShadowStyle, showOppositeContent, oppositeContent, oppositeContentColor, oppositeContentBg, markerType, markerIcon, markerColor, markerBg, showConnector, connectorColor } = attributes; 
+    const { contentBg, enableBorder, borderWidth, borderColor, borderRadius, enableBoxShadow, boxShadowStyle, showOppositeContent, oppositeContent, oppositeContentColor, oppositeContentBg, oppositeContentTag, enableOppositeBorder, oppositeBorderWidth, oppositeBorderColor, oppositeBorderRadius, enableOppositeBoxShadow, oppositeBoxShadowStyle, markerType, markerIcon, markerColor, markerBg, showConnector, connectorColor } = attributes; 
     // box shadow
     const shadowStyleClass = enableBoxShadow ? boxShadowStyle : null;
+
+    // opposite content box shadow 
+    const oppositeShadowStyleClass = enableOppositeBoxShadow ? oppositeBoxShadowStyle : null;
 
     return(
         <Fragment>
@@ -74,23 +87,13 @@ const Edit = ({ className, attributes, setAttributes }) => {
                             </div>
                         </Fragment>
                     }
-                    <ToggleControl
-                        label={__( 'Enable Border Radius' )}
-                        checked={ enableBorderRadius }
-                        onChange={ () => setAttributes({ enableBorderRadius: !enableBorderRadius }) }
+                    <RangeControl
+                        label={ __( 'Border Radius' ) }
+                        value={ borderRadius }
+                        onChange={ ( borderRadius ) => setAttributes( { borderRadius } ) }
+                        min={ 0 }
+                        max={ 100 }
                     />
-                    {
-                        enableBorderRadius &&
-                        <Fragment>
-                            <RangeControl
-                                label={ __( 'Border Radius' ) }
-                                value={ borderRadius }
-                                onChange={ ( borderRadius ) => setAttributes( { borderRadius } ) }
-                                min={ 1 }
-                                max={ 500 }
-                            />
-                        </Fragment>
-                    }
                     <ToggleControl
                         label={__( 'Enable Box Shadow' )}
                         checked={ enableBoxShadow }
@@ -109,17 +112,23 @@ const Edit = ({ className, attributes, setAttributes }) => {
                     }
                 </PanelBody>            
                 <PanelBody 
-                    title={ __( 'Story Date' ) }
+                    title={ __( 'Opposite Content' ) }
                     initialOpen={ false }
                 >
                     <ToggleControl
-                        label={__( 'Show Story Date' )}
+                        label={__( 'Show Opposite Content' )}
                         checked={ showOppositeContent }
                         onChange={ () => setAttributes({ showOppositeContent: !showOppositeContent }) }
                     />
                     {
                         showOppositeContent &&
                         <Fragment>
+                            <SelectControl
+                                label={ __( 'Select Tag' ) }
+                                value={ oppositeContentTag }
+                                options={ tags }
+                                onChange={ ( oppositeContentTag ) => { setAttributes( { oppositeContentTag } ) } }
+                            />
                             <p>{__("Color")}</p>
                             <div style={{ marginBottom: 10 + 'px' }}>
                                 <ColorPalette 
@@ -136,6 +145,54 @@ const Edit = ({ className, attributes, setAttributes }) => {
                                     onChange={ ( oppositeContentBg ) => setAttributes( { oppositeContentBg } ) } 
                                 />
                             </div>
+                            <ToggleControl
+                                label={__( 'Enable Border' )}
+                                checked={ enableOppositeBorder }
+                                onChange={ () => setAttributes({ enableOppositeBorder: !enableOppositeBorder }) }
+                            />
+                            {
+                                enableOppositeBorder &&
+                                <Fragment>
+                                    <RangeControl
+                                        label={ __( 'Border Width' ) }
+                                        value={ oppositeBorderWidth }
+                                        onChange={ ( oppositeBorderWidth ) => setAttributes( { oppositeBorderWidth } ) }
+                                        min={ 1 }
+                                        max={ 200 }
+                                    />
+                                    <p>{__("Border Color")}</p>
+                                    <div style={{ marginBottom: 10 + 'px' }}>
+                                        <ColorPalette 
+                                            colors={ colors } 
+                                            value={ oppositeBorderColor }
+                                            onChange={ ( oppositeBorderColor ) => setAttributes( { oppositeBorderColor } ) } 
+                                        />
+                                    </div>
+                                </Fragment>
+                            }
+                            <RangeControl
+                                label={ __( 'Border Radius' ) }
+                                value={ oppositeBorderRadius }
+                                onChange={ ( oppositeBorderRadius ) => setAttributes( { oppositeBorderRadius } ) }
+                                min={ 0 }
+                                max={ 100 }
+                            />
+                            <ToggleControl
+                                label={__( 'Enable Box Shadow' )}
+                                checked={ enableOppositeBoxShadow }
+                                onChange={ () => setAttributes({ enableOppositeBoxShadow: !enableOppositeBoxShadow }) }
+                            />
+                            {
+                                enableOppositeBoxShadow &&
+                                <Fragment>
+                                    <SelectControl
+                                        label={ __( 'Box Shadow Style' ) }
+                                        value={ oppositeBoxShadowStyle }
+                                        options={ shadowStyles }
+                                        onChange={ ( oppositeBoxShadowStyle ) => { setAttributes( { oppositeBoxShadowStyle } ) } }
+                                    />
+                                </Fragment>
+                            }
                         </Fragment>
                     }
                 </PanelBody>
@@ -169,6 +226,7 @@ const Edit = ({ className, attributes, setAttributes }) => {
                             onChange={ ( markerColor ) => setAttributes( { markerColor } ) } 
                         />
                     </div>
+                    <p>{__("Background Color")}</p>
                     <div style={{ marginBottom: 10 + 'px' }}>
                         <ColorPalette 
                             colors={ colors } 
@@ -216,13 +274,20 @@ const Edit = ({ className, attributes, setAttributes }) => {
                 }
                 {
                     showOppositeContent &&
-                    <div className="oppsite-content">
+                    <div 
+                        className={`oppsite-content ${oppositeShadowStyleClass}`}
+                        style={{
+                            backgroundColor: oppositeContentBg,
+                            border: enableOppositeBorder ? `${oppositeBorderWidth}px solid ${oppositeBorderColor}` : 'none',
+                            borderRadius: oppositeBorderRadius + 'px',
+                        }}
+                    >
                         <RichText
-                            tagName="p"
+                            tagName={ oppositeContentTag }
                             value={ oppositeContent }
                             onChange={ ( oppositeContent ) => setAttributes( { oppositeContent } ) }
-                            placeholder={ __( 'Opposite Content' ) }
-                            style={{ color: oppositeContentColor, backgroundColor: oppositeContentBg }}
+                            placeholder={ __( 'type content...' ) }
+                            style={{ color: oppositeContentColor }}
                         />
                     </div>
                 }
@@ -231,7 +296,7 @@ const Edit = ({ className, attributes, setAttributes }) => {
                     style={{
                         backgroundColor: contentBg,
                         border: enableBorder ? `${borderWidth}px solid ${borderColor}` : null,
-                        borderRadius: enableBorderRadius ? `${borderRadius}px` : null,
+                        borderRadius: `${borderRadius}px`,
                     }}
                 >
                     <InnerBlocks

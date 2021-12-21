@@ -16,13 +16,9 @@ const attributes= {
         type: 'string',
         default: '#cccccc'
     },
-    enableBorderRadius: {
-        type: 'boolean',
-        default: false
-    },
     borderRadius: {
         type: 'number',
-        default: 5
+        default: 0
     },
     enableBoxShadow: {
         type: 'boolean',
@@ -39,7 +35,10 @@ const attributes= {
     },
     oppositeContent: {
         type: 'string',
-        default: '20 Dec 1994'
+    },
+    oppositeContentTag: {
+        type: 'string',
+        default: 'p'
     },
     oppositeContentColor: {
         type: 'string',
@@ -48,6 +47,30 @@ const attributes= {
     oppositeContentBg: {
         type: 'string',
         default: '#ffffff'
+    },
+    enableOppositeBorder: {
+        type: 'boolean',
+        default: false
+    },
+    oppositeBorderWidth: {
+        type: 'number',
+        default: 1
+    },
+    oppositeBorderColor: {
+        type: 'string',
+        default: '#cccccc'
+    },
+    oppositeBorderRadius: {
+        type: 'number',
+        default: 0
+    },
+    enableOppositeBoxShadow: {
+        type: 'boolean',
+        default: false
+    },
+    oppositeBoxShadowStyle: {
+        type: 'string',
+        default: 'bxs_one'
     },
     // timeline marker 
     markerType: {

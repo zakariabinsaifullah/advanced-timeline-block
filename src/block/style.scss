@@ -12,50 +12,130 @@
         margin-left: -3px;
     }
 
+    // both sides style
+    &.both_sides {
+        .wp-block-atlb-single-timeline-item {
+            &:nth-child(odd) {
+                left: 0;
+                // content after 
+                .container-after {
+                    right: -8px;
+                    &.icon-marker {
+                        right: -15px;
+                    }
+                }
+                .container-before {
+                    right: -8px;
+                }
+                .oppsite-content {
+                    left: 100%;
+                }
+            }
+            &:nth-child(even) {
+                left: 50%;
+                // content after 
+                .container-after {
+                    left: -8px;
+                    &.icon-marker {
+                        left: -15px;
+                    }
+                }
+                .container-before {
+                    left: -8px;
+                }
+                .oppsite-content {
+                    right: 100%;
+                }
+            }
+        }
+    }
+
+    // left side only
+    &.left_side {
+        .wp-block-atlb-single-timeline-item {
+            &:nth-child(odd) {
+                left: 0;
+                // content after 
+                .container-after {
+                    right: -8px;
+                    &.icon-marker {
+                        right: -15px;
+                    }
+                }
+                .container-before {
+                    right: -8px;
+                }
+                .oppsite-content {
+                    left: 100%;
+                }
+            }
+            &:nth-child(even) {
+                left: 0;
+                // content after 
+                .container-after {
+                    right: -8px;
+                    &.icon-marker {
+                        right: -15px;
+                    }
+                }
+                .container-before {
+                    right: -8px;
+                }
+                .oppsite-content {
+                    left: 100%;
+                }
+            }
+        }
+    }
+
+    // right side only
+    &.right_side {
+        .wp-block-atlb-single-timeline-item {
+            &:nth-child(odd) {
+                left: 50%;
+                // content after 
+                .container-after {
+                    left: -8px;
+                    &.icon-marker {
+                        left: -15px;
+                    }
+                }
+                .container-before {
+                    left: -8px;
+                }
+                .oppsite-content {
+                    right: 100%;
+                }
+            }
+            &:nth-child(even) {
+                left: 50%;
+                // content after 
+                .container-after {
+                    left: -8px;
+                    &.icon-marker {
+                        left: -15px;
+                    }
+                }
+                .container-before {
+                    left: -8px;
+                }
+                .oppsite-content {
+                    right: 100%;
+                }
+            }
+        }
+    }
+
     // single timeline 
     .wp-block-atlb-single-timeline-item {
         position: relative;
-        background: inherit;
         width: 50%;
         padding: 30px;
+        display: flex;
+        align-items: center;
         .atlb-timeline-content {
-            padding: 20px;
-        }
-        &:nth-child(odd) {
-            left: 0;
-            // content after 
-            .container-after {
-                right: -8px;
-                &.icon-marker {
-                    right: -15px;
-                }
-            }
-            .container-before {
-                right: -8px;
-            }
-            .oppsite-content {
-                right: -120px;
-            }
-        }
-        &:nth-child(even) {
-            left: 50%;
-            // content after 
-            .container-after {
-                left: -8px;
-                &.icon-marker {
-                    left: -15px;
-                }
-            }
-            .container-before {
-                left: -8px;
-            }
-            .oppsite-content {
-                left: -120px;
-            }
-        }
-        .oppsite-content p{
-            padding: 5px 10px;
-            margin: 0 !important;
+            padding: 10px 15px;
+            position: relative;
         }
         // content after 
         .container-after {
@@ -93,12 +173,11 @@
         // opposite content 
         .oppsite-content {
             position: absolute;
-            display: inline-block;
-            top: calc(50% - 16px);
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
+            display: block;
             z-index: 1;
+            width: fit-content;
+            padding: 5px 10px;
+            margin: 30px;
         }
 
     }
@@ -107,14 +186,20 @@
 // Responsive View
 @media (max-width: 600px) {
     .wp-block-atlb-timeline-block {
+        &.right_side {
+            .wp-block-atlb-single-timeline-item:nth-child(odd) {
+                left: 0 !important;
+            }
+        }
         .wp-block-atlb-single-timeline-item {
             width: 100% !important;
-            padding: 30px 15px !important;
+            padding: 20px 0 !important;
+            display: block !important;
             &:nth-child(even) {
                 left: 0 !important;
             }
             .atlb-timeline-content {
-                margin: 60px 0 20px !important;
+                margin: 20px 0 !important;
             }
             .container-before {
                 display: none !important;
@@ -129,11 +214,10 @@
                 margin-left: -8px !important;
             }
             .oppsite-content {
-                top: 0 !important;
-                left: 50% !important;
-                right: auto !important;
-                margin-left: -55px !important;
-                margin-top: 40px !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin: 30px auto !important;
+                position: relative;
             }
         }
     }

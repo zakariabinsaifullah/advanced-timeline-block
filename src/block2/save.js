@@ -1,8 +1,11 @@
 import { InnerBlocks, RichText } from '@wordpress/block-editor';
 const Save = ({ className, attributes }) => {
-    const { contentBg, enableBorder, borderWidth, borderColor, enableBorderRadius, borderRadius, enableBoxShadow, boxShadowStyle, showOppositeContent, oppositeContent, oppositeContentColor, oppositeContentBg, markerType, markerIcon, markerColor, markerBg, showConnector, connectorColor } = attributes; 
+    const { contentBg, enableBorder, borderWidth, borderColor, borderRadius, enableBoxShadow, boxShadowStyle, showOppositeContent, oppositeContent, oppositeContentColor, oppositeContentBg, oppositeContentTag, enableOppositeBorder, oppositeBorderWidth, oppositeBorderColor, oppositeBorderRadius, enableOppositeBoxShadow, oppositeBoxShadowStyle, markerType, markerIcon, markerColor, markerBg, showConnector, connectorColor } = attributes; 
     // box shadow
     const shadowStyleClass = enableBoxShadow ? boxShadowStyle : null;
+
+    // opposite content box shadow 
+    const oppositeShadowStyleClass = enableOppositeBoxShadow ? oppositeBoxShadowStyle : null;
 
     return(
         <div className={`atlb-container ${className}`}>
@@ -20,11 +23,18 @@ const Save = ({ className, attributes }) => {
             }
             {
                 showOppositeContent &&
-                <div className="oppsite-content">
+                <div 
+                    className={`oppsite-content ${oppositeShadowStyleClass}`}
+                    style={{
+                        backgroundColor: oppositeContentBg,
+                        border: enableOppositeBorder ? `${oppositeBorderWidth}px solid ${oppositeBorderColor}` : 'none',
+                        borderRadius: oppositeBorderRadius + 'px',
+                    }}
+                >
                     <RichText.Content
-                        tagName="p"
+                        tagName={ oppositeContentTag }
                         value={ oppositeContent }
-                        style={{ color: oppositeContentColor, backgroundColor: oppositeContentBg }}
+                        style={{ color: oppositeContentColor }}
                     />
                 </div>
             }
@@ -33,7 +43,7 @@ const Save = ({ className, attributes }) => {
                 style={{
                     backgroundColor: contentBg,
                     border: enableBorder ? `${borderWidth}px solid ${borderColor}` : null,
-                    borderRadius: enableBorderRadius ? `${borderRadius}px` : null,
+                    borderRadius: `${borderRadius}px`
                 }}
             >
                 <InnerBlocks.Content />

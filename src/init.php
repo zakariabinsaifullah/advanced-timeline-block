@@ -14,7 +14,7 @@ final class ATLB_Blocks_Class {
 	private function __construct(){
 		$this->atlb_define_constants(); 
 		add_action( 'init', [ $this, 'atlb_blocks_assets' ] );
-		add_filter( 'block_categories', [ $this, 'atlb_custom_category' ] );
+		add_filter( 'block_categories_all', [ $this, 'atlb_custom_category' ] );
 		add_action( 'enqueue_block_assets', [ $this, 'atlb_external_assets_load' ] );
 	}
 
@@ -101,7 +101,7 @@ final class ATLB_Blocks_Class {
 			array(
 				array(
 					'title' => 'Timeline Blocks',
-					'slug'  => 'timeline-blocks'
+					'slug'  => 'timeline-blocks',
 				)
 			),
 			$categories

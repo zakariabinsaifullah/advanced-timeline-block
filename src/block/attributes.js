@@ -3,6 +3,10 @@ const attributes= {
     timebarColor: {
         type: 'string',
         default: '#000000',
+    },
+    timelineStyle: {
+        type: 'string',
+        default: 'both_sides',
     }
 };
 

@@ -4,7 +4,7 @@
  * Description: <strong>Advanced Timeline Block</strong> is a custom <strong>Gutenberg Block</strong> built with <strong>Gutenberg Native Components</strong>. You can build your story timeline with this block.
  * Author: Zakaria Binsaifullah
  * Author URI: https://makegutenblock.com/
- * Version: 1.0.0
+ * Version: 2.0.0
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  *
